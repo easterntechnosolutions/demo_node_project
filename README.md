@@ -3,27 +3,30 @@
 This repository contains the core functionality for a Node.js project, including user management, file uploads, and authentication. The aim is to provide a reusable foundation for future projects.
 
 ## Table of Contents
-* [Getting Started](#getting-started)
-* [Dependencies](#dependencies)
-* [Middleware](#middleware)
-* [Logging](#logging)
-* [Error Handling](#error-handling)
+
+- [Getting Started](#getting-started)
+- [Dependencies](#dependencies)
+- [Middleware](#middleware)
+- [Logging](#logging)
+- [Error Handling](#error-handling)
 
 ## Getting Started
 
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
-* Node.js (>= 12.x)
-* npm (>= 6.x)
-* MySQL
+
+- Node.js (>= 12.x)
+- npm (>= 6.x)
+- MySQL
 
 ### Installation
+
 1. Clone the repository:
 
 ```
 git clone https://github.com/your-username/node_projects.git
-cd node_projects
+cd project_name
 ```
 
 2. Install dependencies:
@@ -40,7 +43,13 @@ npm install
 npx sequelize-cli db:migrate
 ```
 
-5. Start the server:
+5. Creating the seeds
+
+```
+npx sequelize-cli db:seed:all
+```
+
+6. Start the server:
 
 ```
 npm start
@@ -48,20 +57,20 @@ npm start
 
 ## Dependencies
 
-* express
-* sequelize
-* mysql2
-* multer
-* sharp
-* dotenv
-* jsonwebtoken
-* winston (for logging)
-* nodemon
+- express
+- sequelize
+- mysql2
+- multer
+- sharp
+- dotenv
+- jsonwebtoken
+- winston (for logging)
+- nodemon
 
 ## Middleware
 
-* uploadFile.js: Handles file uploads using multer and compresses image files using sharp.
-* verifyToken.js: Verifies JWT tokens for protected routes.
+- uploadFile.js: Handles file uploads using multer and compresses image files using sharp.
+- verifyToken.js: Verifies JWT tokens for protected routes.
 
 ## Logging
 

@@ -9,9 +9,9 @@ module.exports = (sequelize) => {
   File.init(
     {
       userId: DataTypes.INTEGER,
-      filename: DataTypes.STRING(50),
-      filepath: DataTypes.STRING(110),
-      mimetype: DataTypes.STRING(50),
+      filename: DataTypes.STRING,
+      filepath: DataTypes.STRING,
+      mimetype: DataTypes.STRING,
       filesize: DataTypes.INTEGER,
     },
     {
