@@ -1,6 +1,6 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require("sequelize");
+module.exports = (sequelize) => {
   class Category extends Model {
     static associate(models) {
       Category.hasMany(models.Product, {
@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Category.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
       category_name: {
         type: DataTypes.STRING,
         allowNull: false,

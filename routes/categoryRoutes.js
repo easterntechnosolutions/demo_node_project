@@ -2,12 +2,12 @@ const express = require("express");
 
 // CONTROLLERS
 const {
-  getAllUserList,
-  createUser,
-  deleteUser,
-  getUserById,
-  updateUser,
-} = require("../controllers/userControllers");
+  addCategory,
+  getAllCategoryList,
+  getCategoryById,
+  updateCategoryById,
+  deleteCategoryById,
+} = require("../controllers/categoryControllers");
 
 // VERIFY TOKEN FOR EACH ROUTES
 const { verifyToken } = require("../middlewares/verifyToken");
@@ -16,41 +16,46 @@ const { verifyToken } = require("../middlewares/verifyToken");
 const checkRole = require("../middlewares/checkRole");
 
 //  TO VALIDATE USER DATA TYPES WHILE CREATING NEW USER
-const { validateUser } = require("../middlewares/validatation");
+const { validateCategory } = require("../middlewares/validatation");
 
 const router = express.Router();
 
 // Private routes (require authentication)
 router.post(
-  "/add_user",
+  "/add_category",
   verifyToken,
   checkRole(["super_admin", "admin1"]),
-  validateUser,
-  createUser
+  validateCategory,
+  addCategory
 );
 
 router.get(
   "/",
   verifyToken,
   checkRole(["super_admin", "admin1", "admin2", "super_agent"]),
-  getAllUserList
+  getAllCategoryList
 );
 
 router.get(
   "/:id",
   verifyToken,
   checkRole(["super_admin", "admin1", "admin2"]),
-  getUserById
+  getCategoryById
 );
 
 router.put(
   "/:id",
   verifyToken,
   checkRole(["super_admin"]),
-  validateUser,
-  updateUser
+  validateCategory,
+  updateCategoryById
 );
 
-router.delete("/:id", verifyToken, checkRole(["super_admin"]), deleteUser);
+router.delete(
+  "/:id",
+  verifyToken,
+  checkRole(["super_admin"]),
+  deleteCategoryById
+);
 
 module.exports = router;

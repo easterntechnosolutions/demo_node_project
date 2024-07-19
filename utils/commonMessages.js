@@ -31,4 +31,20 @@ module.exports = {
     DATA_TOO_LONG: "Data too long for column 'filename'",
     EMPTY_FILE: "Empty File",
   },
+  CATEGORY: {
+    CREATE_SUCCESS: "Category has been created successfully",
+    UPDATE_SUCCESS: "Category has been updated successfully",
+    DELETE_SUCCESS: "Category has been deleted successfully",
+    CATEGORY_NOT_FOUND: "Category Not Found",
+    FETCH_SUCCESS: "Category detail fetched successfully",
+    LIST_FETCH_SUCCESS: "Category list fetched successfully",
+  },
+  PRODUCT: {
+    CREATE_SUCCESS: "Product has been created successfully",
+    UPDATE_SUCCESS: "Product has been updated successfully",
+    DELETE_SUCCESS: "Product has been deleted successfully",
+    PRODUCT_NOT_FOUND: "Product Not Found",
+    FETCH_SUCCESS: "Product detail fetched successfully",
+    LIST_FETCH_SUCCESS: "Product list fetched successfully",
+  },
 };

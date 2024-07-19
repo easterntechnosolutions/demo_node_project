@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       price: {
-        type: Sequelize.STRING(15),
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       categoryId: {
         type: Sequelize.INTEGER,

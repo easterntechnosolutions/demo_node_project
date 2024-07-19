@@ -18,6 +18,8 @@ const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const uploadFileRoutes = require("./routes/uploadFileRoutes");
 const roleRoutes = require("./routes/roleRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 dotenv.config();
 
@@ -44,10 +46,16 @@ app.use(`${process.env.BASE_URL}/auth`, authRoutes);
 app.use(`${process.env.BASE_URL}/users`, userRoutes);
 
 // UPLOAD FILE ROUTES
-app.use(`${process.env.BASE_URL}/file`, uploadFileRoutes);
+app.use(`${process.env.BASE_URL}/files`, uploadFileRoutes);
 
 // ROLE ROUTES
 app.use(`${process.env.BASE_URL}/roles`, roleRoutes);
+
+// CATEGORY ROUTES
+app.use(`${process.env.BASE_URL}/categories`, categoryRoutes);
+
+// PRODUCTS ROUTES
+app.use(`${process.env.BASE_URL}/products`, productRoutes);
 
 // BUGSNAG ERROR HANDLER
 app.use(bugsnagMiddleware.errorHandler);
