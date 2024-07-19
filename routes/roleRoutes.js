@@ -12,7 +12,7 @@ const { validateRole } = require("../middlewares/validatation");
 // CONTROLLERS
 const {
   getAllRolesList,
-  createRole,
+  addRole,
   getRoleById,
   updateRole,
   deleteRole,
@@ -26,7 +26,7 @@ router.post(
   verifyToken,
   validateRole,
   checkRole(["super_admin"]),
-  createRole
+  addRole
 );
 
 router.get(

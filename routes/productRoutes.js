@@ -7,6 +7,7 @@ const {
   getProductById,
   updateProductById,
   deleteProductById,
+  searchProducts,
 } = require("../controllers/productControllers");
 
 // VERIFY TOKEN FOR EACH ROUTES
@@ -34,6 +35,13 @@ router.get(
   verifyToken,
   checkRole(["super_admin", "admin1", "admin2", "super_agent"]),
   getAllProducts
+);
+
+router.get(
+  "/search",
+  verifyToken,
+  checkRole(["super_admin", "admin1", "admin2", "super_agent"]),
+  searchProducts
 );
 
 router.get(

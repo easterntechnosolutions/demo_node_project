@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 // USER MODEL
 const { Product } = require("../models");
 
@@ -169,10 +171,50 @@ const deleteProductById = async (req, res) => {
     );
   }
 };
+
+// SEARCH PRODUCTS
+const searchProducts = async (req, res) => {
+  logger.info("productControllers --> searchProducts --> reached");
+  const { query } = req.query;
+
+  try {
+    const responseData = await Product.findAll({
+      where: {
+        product_name: {
+          [Op.like]: `%${query}%`,
+        },
+      },
+    });
+
+    if (responseData.length === 0) {
+      Bugsnag.notify(message.PRODUCT.PRODUCT_NOT_FOUND);
+      return errorResponse(res, message.PRODUCT.PRODUCT_NOT_FOUND, null, 404);
+    }
+
+    logger.info("productControllers --> searchProducts --> ended");
+    return successResponse(
+      res,
+      message.PRODUCT.FETCH_SUCCESS,
+      responseData,
+      200
+    );
+  } catch (error) {
+    logger.error("productControllers --> searchProducts --> error", error);
+    Bugsnag.notify(error);
+    return errorResponse(
+      res,
+      message.SERVER.INTERNAL_SERVER_ERROR,
+      error.message,
+      500
+    );
+  }
+};
+
 module.exports = {
   addProduct,
   getAllProducts,
   getProductById,
   updateProductById,
   deleteProductById,
+  searchProducts,
 };
