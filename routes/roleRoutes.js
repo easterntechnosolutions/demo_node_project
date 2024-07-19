@@ -22,40 +22,30 @@ const router = express.Router();
 
 // Private routes (require authentication)
 router.post(
-  "/create_role",
+  "/add_role",
   verifyToken,
   validateRole,
-  checkRole(["Super_Admin"]),
+  checkRole(["super_admin"]),
   createRole
 );
 
 router.get(
-  "/get_all_roles",
+  "/",
   verifyToken,
-  checkRole(["Super_Admin"]),
+  checkRole(["super_admin", "admin1", "admin2", "super_agent"]),
   getAllRolesList
 );
 
-router.get(
-  "/get_role_by_id/:id",
-  verifyToken,
-  checkRole(["Super_Admin"]),
-  getRoleById
-);
+router.get("/:id", verifyToken, checkRole(["super_admin"]), getRoleById);
 
 router.put(
-  "/update_role/:id",
+  "/:id",
   verifyToken,
   validateRole,
-  checkRole(["Super_Admin"]),
+  checkRole(["super_admin"]),
   updateRole
 );
 
-router.delete(
-  "/delete_role/:id",
-  verifyToken,
-  checkRole(["Super_Admin"]),
-  deleteRole
-);
+router.delete("/:id", verifyToken, checkRole(["super_admin"]), deleteRole);
 
 module.exports = router;

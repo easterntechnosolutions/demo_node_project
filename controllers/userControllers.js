@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
     logger.info("userControllers --> createUser --> reached");
     const { firstname, lastname, email, roleId } = req.body;
 
-    const responseNewUserData = await User.create({
+    const responseData = await User.create({
       firstname,
       lastname,
       email,
@@ -23,12 +23,7 @@ const createUser = async (req, res) => {
     });
 
     logger.info("userControllers --> createUser --> ended");
-    return successResponse(
-      res,
-      message.USER.CREATE_SUCCESS,
-      responseNewUserData,
-      201
-    );
+    return successResponse(res, message.USER.CREATE_SUCCESS, responseData, 201);
   } catch (error) {
     logger.error("userControllers --> createUser --> error", error);
     Bugsnag.notify(error);
@@ -45,13 +40,13 @@ const createUser = async (req, res) => {
 const getAllUserList = async (req, res) => {
   try {
     logger.info("userControllers --> getAllUserList --> reached");
-    const responseUsersData = await User.findAll();
+    const responseData = await User.findAll();
 
     logger.info("userControllers --> getAllUserList --> ended");
     return successResponse(
       res,
       message.USER.LIST_FETCH_SUCCESS,
-      responseUsersData,
+      responseData,
       200
     );
   } catch (error) {
@@ -71,21 +66,16 @@ const getUserById = async (req, res) => {
   logger.info("userControllers --> getUserById --> reached");
   const { id } = req.params;
   try {
-    const responseUserData = await User.findByPk(id);
+    const responseData = await User.findByPk(id);
 
-    if (!responseUserData) {
+    if (!responseData) {
       Bugsnag.notify(message.USER.USER_NOT_FOUND);
       return errorResponse(res, message.USER.USER_NOT_FOUND, null, 404);
     }
 
     logger.info("userControllers --> getUserById --> ended");
 
-    return successResponse(
-      res,
-      message.USER.FETCH_SUCCESS,
-      responseUserData,
-      200
-    );
+    return successResponse(res, message.USER.FETCH_SUCCESS, responseData, 200);
   } catch (error) {
     logger.error("userControllers --> getUserById --> error", error);
     Bugsnag.notify(error);
@@ -104,26 +94,21 @@ const updateUser = async (req, res) => {
   const { id } = req.params;
   const { firstname, lastname, email } = req.body;
   try {
-    const responseUserData = await User.findByPk(id);
+    const responseData = await User.findByPk(id);
 
-    if (!responseUserData) {
+    if (!responseData) {
       Bugsnag.notify(message.USER.USER_NOT_FOUND);
       return errorResponse(res, message.USER.USER_NOT_FOUND, null, 404);
     }
 
-    responseUserData.firstname = firstname;
-    responseUserData.lastname = lastname;
-    responseUserData.email = email;
+    responseData.firstname = firstname;
+    responseData.lastname = lastname;
+    responseData.email = email;
 
-    await responseUserData.save();
+    await responseData.save();
 
     logger.info("userControllers --> updateUser --> ended");
-    return successResponse(
-      res,
-      message.USER.UPDATE_SUCCESS,
-      responseUserData,
-      200
-    );
+    return successResponse(res, message.USER.UPDATE_SUCCESS, responseData, 200);
   } catch (error) {
     logger.error("userControllers --> updateUser --> error", error);
     Bugsnag.notify(error);
@@ -141,22 +126,17 @@ const deleteUser = async (req, res) => {
   logger.info("userControllers --> deleteUser --> reached");
   const { id } = req.params;
   try {
-    const responseUserData = await User.findByPk(id);
+    const responseData = await User.findByPk(id);
 
-    if (!responseUserData) {
+    if (!responseData) {
       Bugsnag.notify(message.USER.USER_NOT_FOUND);
       return errorResponse(res, message.USER.USER_NOT_FOUND, null, 404);
     }
 
-    await responseUserData.destroy();
+    await responseData.destroy();
 
     logger.info("userControllers --> deleteUser --> ended");
-    return successResponse(
-      res,
-      message.USER.DELETE_SUCCESS,
-      responseUserData,
-      200
-    );
+    return successResponse(res, message.USER.DELETE_SUCCESS, responseData, 200);
   } catch (error) {
     logger.error("userControllers --> deleteUser --> error", error);
     Bugsnag.notify(error);

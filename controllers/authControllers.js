@@ -19,15 +19,15 @@ const generateAuthToken = async (req, res) => {
     logger.info("authControllers --> generateAuthToken --> reached");
 
     const { email } = req.body;
-    const responseUser = await User.findOne({ where: { email } });
+    const responseData = await User.findOne({ where: { email } });
 
-    if (!responseUser) {
+    if (!responseData) {
       Bugsnag.notify(message.AUTH.INVALID_USER);
       return errorResponse(res, message.AUTH.INVALID_USER, null, 404);
     }
 
     // GENERATE TOKEN
-    const tokenData = generateToken(responseUser.id);
+    const tokenData = generateToken(responseData.id);
 
     logger.info("authControllers --> generateAuthToken --> ended");
     return successResponse(res, message.AUTH.VERIFIED_USER, tokenData, 200);
