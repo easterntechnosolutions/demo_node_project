@@ -16,7 +16,10 @@ const { verifyToken } = require("../middlewares/verifyToken");
 const checkRole = require("../middlewares/checkRole");
 
 //  TO VALIDATE USER DATA TYPES WHILE CREATING NEW USER
-const { validateUser } = require("../middlewares/validatation");
+const {
+  validateNewUser,
+  validatePrevUser,
+} = require("../middlewares/validatation");
 
 const router = express.Router();
 
@@ -25,7 +28,7 @@ router.post(
   "/add_user",
   verifyToken,
   checkRole(["super_admin", "admin1"]),
-  validateUser,
+  validateNewUser,
   createUser
 );
 
@@ -47,7 +50,7 @@ router.put(
   "/:id",
   verifyToken,
   checkRole(["super_admin"]),
-  validateUser,
+  validatePrevUser,
   updateUser
 );
 
