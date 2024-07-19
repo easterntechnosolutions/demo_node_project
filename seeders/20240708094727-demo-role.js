@@ -7,17 +7,27 @@ module.exports = {
       "Roles",
       [
         {
-          name: "Admin",
+          name: "super_admin",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Super_Admin",
+          name: "admin1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "Customer",
+          name: "admin2",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "super_agent",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "agent",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

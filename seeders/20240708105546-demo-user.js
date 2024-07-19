@@ -8,7 +8,6 @@ module.exports = {
     );
 
     const rolesRows = roles[0];
-    console.log("ROLES ::: ", rolesRows);
 
     await queryInterface.bulkInsert(
       "Users",
@@ -17,7 +16,7 @@ module.exports = {
           firstname: "Amit",
           lastname: "Vishwakarma",
           email: "amit.vishwakarma@gmail.com",
-          roleId: rolesRows.find((role) => role.name === "Admin").id,
+          roleId: rolesRows.find((role) => role.name === "super_admin").id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -25,7 +24,7 @@ module.exports = {
           firstname: "Ravi",
           lastname: "Singh",
           email: "ravi.singh@gmail.com",
-          roleId: rolesRows.find((role) => role.name === "Super_Admin").id,
+          roleId: rolesRows.find((role) => role.name === "admin1").id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -33,7 +32,7 @@ module.exports = {
           firstname: "Mehak",
           lastname: "Shrivastava",
           email: "mehak@gmail.com",
-          roleId: rolesRows.find((role) => role.name === "Customer").id,
+          roleId: rolesRows.find((role) => role.name === "super_agent").id,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
