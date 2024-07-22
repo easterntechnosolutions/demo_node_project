@@ -14,11 +14,6 @@ const upload = require("../middlewares/uploadFile");
 const router = express.Router();
 
 // Private routes (require authentication) --- (here we are passing array of files with max count is 5)
-router.post(
-  "/upload-file",
-  verifyToken,
-  upload.array("files", 5),
-  uploadAndIntegrateFile
-);
+router.post("/upload-file", upload.array("files", 5), uploadAndIntegrateFile);
 
 module.exports = router;

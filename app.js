@@ -12,6 +12,7 @@ const db = require("./models");
 
 // MIDDLEWARES MODULES
 const loggerMiddleware = require("./middlewares/loggerMiddleware");
+const { verifyToken } = require("./middlewares/verifyToken");
 
 // ROUTES
 const userRoutes = require("./routes/userRoutes");
@@ -39,8 +40,13 @@ app.get("/", (req, res) => {
   res.status(200).send("HELLO WORLD....");
 });
 
+// ---------------- PUBLIC ROUTES -----------------------
+
 // AUTH ROUTES
 app.use(`${process.env.BASE_URL}/auth`, authRoutes);
+
+// ---------------- PRIVATE ROUTES -----------------------
+app.use(verifyToken);
 
 // USER ROUTES
 app.use(`${process.env.BASE_URL}/users`, userRoutes);

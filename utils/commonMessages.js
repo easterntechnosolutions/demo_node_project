@@ -6,6 +6,7 @@ module.exports = {
     USER_NOT_FOUND: "User Not Found",
     FETCH_SUCCESS: "User detail fetched successfully",
     LIST_FETCH_SUCCESS: "User list fetched successfully",
+    CANNOT_DELETE_SELF: "Cannot delete itself",
   },
   ROLE: {
     CREATE_SUCCESS: "Role has been created successfully",

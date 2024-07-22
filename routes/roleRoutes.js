@@ -1,8 +1,5 @@
 const express = require("express");
 
-// VERIFY TOKEN FOR EACH ROUTES
-const { verifyToken } = require("../middlewares/verifyToken");
-
 // CHECK ROLE ACCORDING TO ROUTES
 const checkRole = require("../middlewares/checkRole");
 
@@ -21,31 +18,18 @@ const {
 const router = express.Router();
 
 // Private routes (require authentication)
-router.post(
-  "/add_role",
-  verifyToken,
-  validateRole,
-  checkRole(["super_admin"]),
-  addRole
-);
+router.post("/add_role", validateRole, checkRole(["super_admin"]), addRole);
 
 router.get(
   "/",
-  verifyToken,
   checkRole(["super_admin", "admin1", "admin2", "super_agent"]),
   getAllRolesList
 );
 
-router.get("/:id", verifyToken, checkRole(["super_admin"]), getRoleById);
+router.get("/:id", checkRole(["super_admin"]), getRoleById);
 
-router.put(
-  "/:id",
-  verifyToken,
-  validateRole,
-  checkRole(["super_admin"]),
-  updateRole
-);
+router.put("/:id", validateRole, checkRole(["super_admin"]), updateRole);
 
-router.delete("/:id", verifyToken, checkRole(["super_admin"]), deleteRole);
+router.delete("/:id", checkRole(["super_admin"]), deleteRole);
 
 module.exports = router;
