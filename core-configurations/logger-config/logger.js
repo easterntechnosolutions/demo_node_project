@@ -9,7 +9,7 @@ const logger = createLogger({
   format: combine(timestamp(), customFormat),
   transports: [
     new transports.Console(),
-    new transports.File({ filename: "combined.log" }),
+    new transports.File({ filename: "nodeJs.log" }),
   ],
 });
 
