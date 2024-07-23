@@ -23,6 +23,7 @@ module.exports = {
     INVALID_FORMAT: "Invalid Format",
     UNAUTHORIZED_TOKEN: "Unauthorized Token",
     ACCESS_DENIED: "Access denied",
+    LOGOUT: "User Logout Successfully",
   },
   SERVER: {
     INTERNAL_SERVER_ERROR: "Internal Server Error",

@@ -9,6 +9,9 @@ const Bugsnag = require("../core-configurations/bugsnag-config/bugsnagConfig");
 const message = require("../utils/commonMessages");
 const { errorResponse } = require("../utils/handleResponse");
 
+// MIDDLEWARE
+const { isBlacklisted } = require("../middlewares/blackListToken");
+
 dotenv.config();
 
 // THIS FUNCTIONALITY WILL VERIFY THE GENERATED TOKEN AND PROVIDE THE ACCESS TO FURTHER ROUTES.
@@ -16,7 +19,7 @@ const verifyToken = (req, res, next) => {
   const token =
     req.headers.authorization && req.headers.authorization.split(" ")[1];
 
-  if (!token) {
+  if (!token || isBlacklisted(token)) {
     return errorResponse(res, message.AUTH.UNAUTHORIZED_TOKEN, null, 401);
   }
 
